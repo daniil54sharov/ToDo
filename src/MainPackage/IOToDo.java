@@ -8,7 +8,8 @@ import java.io.File;
 
 public final  class  IOToDo {
     public static final void  writeTask(ToDo toDo) {
-        File directory = new File("Data/" + toDo.getTopic() + ".bin");
+        String fileName = toDo.getTopic().replace(' ', '_');
+        File directory = new File("Data/" + fileName + ".bin");
         try {
             FileOutputStream fos = new FileOutputStream(directory);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
