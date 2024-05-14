@@ -1,11 +1,17 @@
 package MainPackage;
 
-public class ToDo {
+import java.io.Serializable;
+
+public class ToDo implements Serializable {
     private String topic;
     private String description;
 
     ToDo(String topic) {
         this.topic = topic;
+    }
+    @Override
+    public String toString() {
+        return topic;
     }
     public String getTopic() {
         return topic;
