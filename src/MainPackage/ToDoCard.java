@@ -17,7 +17,7 @@ public class ToDoCard extends JPanel {
     private JPanel labelPanel;
     private JPanel buttonPanel;
     private JButton editBtn, deleteBtn, saveChangesBtn, cancelChangesBtn;
-    private ToDoDialog toDoDialog;
+    private DeleteToDoDialog toDoDialog;
     private ToDo toDo;
 
     ToDoCard(ToDo toDo) {
@@ -122,7 +122,7 @@ public class ToDoCard extends JPanel {
         saveChangesBtn = new JButton("Save");
         cancelChangesBtn = new JButton("Cancel");
 
-        toDoDialog = new ToDoDialog(toDo);
+        toDoDialog = new DeleteToDoDialog(toDo);
         toDoDialog.setVisible(false);
     }
 

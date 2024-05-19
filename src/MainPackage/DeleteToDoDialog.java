@@ -7,18 +7,17 @@ import javax.swing.BoxLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.sql.SQLOutput;
 
-public class ToDoDialog extends JDialog{
+public class DeleteToDoDialog extends JDialog{
     private JLabel dialogLbl;
     private JButton confirmBtn, cancelBtn;
     private JPanel mainPanel;
     private JPanel buttonPanel;
     private ToDo toDo;
     private File file;
-    private ToDoDialog toDoDialog;
+    private DeleteToDoDialog toDoDialog;
 
-    public ToDoDialog(ToDo toDo) {
+    public DeleteToDoDialog(ToDo toDo) {
         super();
         this.toDo = toDo;
         this.setSize(250, 150);
