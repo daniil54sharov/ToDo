@@ -22,7 +22,8 @@ public class ToDo implements Serializable {
     }
 
     public String getDescription() {
-        return description;
+        if(description != null) return description;
+        else return "";
     }
 
     public void setDescription(String description) {
