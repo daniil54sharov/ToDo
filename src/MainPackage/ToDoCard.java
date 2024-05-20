@@ -130,7 +130,7 @@ public class ToDoCard extends JPanel {
         int counter = 0;
         String res = str;
             for(int i = 0; i < res.length(); i++) {
-                if(res.charAt(i) == ' ' && counter > 70) {
+                if(res.charAt(i) == ' ' && counter > 60) {
                     if(!res.startsWith(separator, i)) {
                         res = res.substring(0, i) + separator + res.substring(i + 1);
                         counter = 0;
