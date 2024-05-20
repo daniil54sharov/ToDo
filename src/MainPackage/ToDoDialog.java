@@ -4,10 +4,10 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.BoxLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.sql.SQLOutput;
 
 public class ToDoDialog extends JDialog{
     private JLabel dialogLbl;
@@ -16,23 +16,28 @@ public class ToDoDialog extends JDialog{
     private JPanel buttonPanel;
     private ToDo toDo;
     private File file;
-    private ToDoDialog toDoDialog;
+    private final ToDoDialog toDoDialog = this;
 
     public ToDoDialog(ToDo toDo) {
         super();
+        this.setLayout(new BorderLayout());
         this.toDo = toDo;
-        this.setSize(250, 150);
+        init();
+        this.add(mainPanel);
+    }
+    private void init() {
+        this.setSize(300, 100);
         this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         this.setModal(true);
-        toDoDialog = this;
+        dialogLbl = new JLabel("Delete " + "\"" + toDo.getTopic() + "\"" + "?");
+        confirmBtn = new JButton("Delete");
+        cancelBtn = new JButton("Cancel");
 
-        init();
         confirmBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(file.exists()) {
-                    System.out.println("Exists");
-                    System.out.println(file.delete());
+                    file.delete();
                     MainFrame.setTasksInMainPanel();
                     toDoDialog.setVisible(false);
                 }
@@ -47,20 +52,13 @@ public class ToDoDialog extends JDialog{
             }
         });
 
-        dialogLbl.setText("Delete " + "\"" + toDo.getTopic() + "\"" + "?");
-        this.add(mainPanel);
-    }
-    private void init() {
-        dialogLbl = new JLabel();
-        confirmBtn = new JButton("Delete");
-        cancelBtn = new JButton("Cancel");
         mainPanel = new JPanel();
         file = new File("Data/" + toDo.getTopic().replace(' ', '_') + ".bin");
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
         buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
-        mainPanel.add(dialogLbl);
-        mainPanel.add(buttonPanel);
+        mainPanel.add(dialogLbl, BorderLayout.NORTH);
+        mainPanel.add(buttonPanel, BorderLayout.SOUTH);
         buttonPanel.add(confirmBtn);
         buttonPanel.add(cancelBtn);
     }
